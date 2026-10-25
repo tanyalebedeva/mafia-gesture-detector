@@ -35,32 +35,17 @@ YOLOv8n (~3 млн параметров), дообученная с COCO. Выб
 ## Быстрый старт
 
 ```bash
-git clone https://github.com/<ВАШ_НИК>/mafia-gesture-detector.git
+git clone https://github.com/tanyalebedeva/mafia-gesture-detector.git
 cd mafia-gesture-detector
 python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-
-# Инференс готовой моделью (models/best.pt уже в репозитории)
 python -m mafia_cv.predict path/to/photo.jpg --save
 python -m mafia_cv.predict 0 --show                     # веб-камера
 
-# Веб-демо
 pip install -r requirements-app.txt && python app.py    # http://127.0.0.1:7860
 ```
 
-### Обучение с нуля
-
-```bash
-cp .env.example .env            # впишите ROBOFLOW_API_KEY
-python -m mafia_cv.train --tune # скачать датасет -> подбор -> обучение -> метрики на test
-```
-
-Или откройте [`notebooks/train_colab.ipynb`](notebooks/train_colab.ipynb) в Google Colab (GPU T4, ~20 минут).
-
 ### Проверка утечки train/test
-
-Кадры одного видео почти одинаковы. Если они попали в разные выборки,
-метрики на test завышены. Скрипт это проверяет и умеет переразбить данные по видео:
 
 ```bash
 python -m mafia_cv.leakage datasets/mafia-cv-1
@@ -83,14 +68,3 @@ models/best.pt  обученные веса (6 МБ)
 reports/        model card и метрики
 tests/          pytest (включая смоук-тест модели), запускаются в GitHub Actions
 ```
-
-## Дальнейшие шаги
-- [ ] Переразбить датасет по видео и переобучить с подобранными гиперпараметрами
-- [ ] Добавить кадры с реальных турниров: другой фон, несколько игроков в кадре
-- [ ] Трекинг рук на видео (ByteTrack) и сглаживание предсказаний по кадрам
-- [ ] Экспорт в ONNX и замер FPS на CPU
-- [ ] Демо на Hugging Face Spaces
-
-## Лицензия
-Код использует [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics), который
-распространяется под лицензией AGPL-3.0, поэтому проект тоже открыт под AGPL-3.0.
