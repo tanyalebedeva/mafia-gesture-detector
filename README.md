@@ -1,15 +1,8 @@
 # Детектор жестов «Спортивной мафии»
 
-![CI](https://github.com/<ВАШ_НИК>/mafia-gesture-detector/actions/workflows/ci.yml/badge.svg)
-![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-![YOLOv8](https://img.shields.io/badge/model-YOLOv8n-purple)
-
 Модель находит на кадре руку игрока и распознаёт жест: **чёрный (мафия), дон, мирный,
 шериф** и **номера 1–5**. Её можно использовать для автоматической разметки
 видеотрансляций турниров по спортивной мафии.
-
-*Hand-gesture detector for competitive Mafia games: YOLOv8n fine-tuned on a hand-labelled
-dataset of 9 gesture classes; mAP@50 = 0.97 on held-out test.*
 
 ![Предсказания модели](docs/img/val_predictions.jpg)
 
