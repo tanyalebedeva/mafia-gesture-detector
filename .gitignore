@@ -1,0 +1,26 @@
+# секреты
+.env
+
+# данные и результаты запусков
+datasets/
+runs/
+*.cache
+yolov8n.pt
+yolo11n.pt
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ОС / IDE
+.DS_Store
+.idea/
+.vscode/
+
+*.pt
+!models/best.pt

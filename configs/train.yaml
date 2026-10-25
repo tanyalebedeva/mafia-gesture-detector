@@ -1,0 +1,22 @@
+# Конфигурация обучения. Все значения можно переопределить флагами train.py.
+
+model: yolov8n.pt        # COCO-предобученные веса (transfer learning)
+seed: 42
+
+train:
+  epochs: 30
+  imgsz: 640
+  batch: 16
+  optimizer: AdamW       # ВАЖНО: явно, иначе 'auto' игнорирует lr0 и momentum
+  lr0: 0.001             # будет заменено лучшим значением из подбора (--tune)
+  momentum: 0.9          # для AdamW это beta1
+  patience: 10           # ранняя остановка, если mAP на valid не растёт
+  cos_lr: true
+  deterministic: true
+
+tune:
+  epochs: 10
+  iterations: 20         # 3 итерации - слишком мало для осмысленного поиска
+  space:                 # (min, max) для эволюционного тюнера Ultralytics
+    lr0: [0.0001, 0.01]
+    momentum: [0.7, 0.98]
